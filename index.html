@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دكتورة هيام - فيديو توعية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0D7C66;
+            --primary-light: #14A085;
+            --primary-dark: #095C4B;
+            --accent: #E8B931;
+            --accent-light: #F5D76E;
+            --bg-dark: #0A1A14;
+            --bg-card: rgba(13, 124, 102, 0.12);
+            --text: #F0F7F4;
+            --text-muted: #8FBFAF;
+            --rose: #D4637B;
+            --rose-light: #E88FA0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* === خلفية متحركة === */
+        .bg-particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.15; }
+            80% { opacity: 0.15; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* === الحاوية الرئيسية === */
+        .video-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 960px;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 60px rgba(13, 124, 102, 0.3),
+                0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(13, 124, 102, 0.3);
+        }
+
+        /* === شريط العنوان العلوي === */
+        .top-bar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .top-bar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            position: relative;
+        }
+
+        .top-bar-title {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            letter-spacing: 1px;
+        }
+
+        .top-bar-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(232, 185, 49, 0.15);
+            border: 1px solid var(--accent);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+
+        .live-dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        /* === منطقة العرض === */
+        .stage {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(160deg, #061210 0%, #0D241D 40%, #0A1A14 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* === الشرائح === */
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* === الشريحة 0: المقدمة === */
+        .slide-intro .logo-big {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 28px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .slide-intro h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .slide-intro .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 6px;
+        }
+
+        .slide-intro .tagline {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 700;
+            padding: 6px 24px;
+            border: 1px solid rgba(232, 185, 49, 0.3);
+            border-radius: 30px;
+            background: rgba(232, 185, 49, 0.08);
+        }
+
+        /* === الخلفيات للشرائح === */
+        .slide-bg-pattern {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0.06;
+        }
+
+        .slide-glow {
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        /* === عناصر الشرائح العامة === */
+        .slide-icon {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .slide-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255,255,255,0.15);
+            animation: spinSlow 20s linear infinite;
+        }
+
+        @keyframes spinSlow {
+            to { transform: rotate(360deg); }
+        }
+
+        .slide h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .slide p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* === بطاقات النصائح === */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .tip-card {
+            background: rgba(13, 124, 102, 0.1);
+            border: 1px solid rgba(13, 124, 102, 0.25);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .tip-card .tip-num {
+            width: 28px; height: 28px;
+            min-width: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+        }
+
+        .tip-card .tip-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* === شريحة الإحصائيات === */
+        .stats-row {
+            display: flex;
+            gap: 30px;
+            margin-top: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* === شريحة الخاتمة === */
+        .slide-outro .cta-box {
+            background: linear-gradient(135deg, rgba(13, 124, 102, 0.2), rgba(232, 185, 49, 0.1));
+            border: 1px solid rgba(232, 185, 49, 0.3);
+            border-radius: 20px;
+            padding: 30px 40px;
+            text-align: center;
+            margin-top: 20px;
+            backdrop-filter: blur(20px);
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.06);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-item i {
+            color: var(--accent);
+        }
+
+        /* === شريط التقدم === */
+        .progress-bar {
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            transition: width 0.5s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* === التحكم === */
+        .controls {
+            background: linear-gradient(135deg, #081612, #0D1F1A);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid rgba(13, 124, 102, 0.2);
+        }
+
+        .ctrl-btn {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .ctrl-btn.play-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--accent-light);
+            box-shadow: 0 4px 20px rgba(13, 124, 102, 0.4);
+        }
+
+        .ctrl-btn.play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 30px rgba(13, 124, 102, 0.6);
+        }
+
+        .ctrl-btn.nav-btn {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .ctrl-btn.nav-btn:hover {
+            background: rgba(13, 124, 102, 0.2);
+            color: var(--text);
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            width: 28px;
+            border-radius: 5px;
+            box-shadow: 0 0 12px rgba(232, 185, 49, 0.4);
+        }
+
+        .time-display {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Tajawal', sans-serif;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .ctrl-btn.autoplay-btn {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+            width: auto;
+            padding: 0 14px;
+            border-radius: 20px;
+            gap: 6px;
+        }
+
+        .ctrl-btn.autoplay-btn.on {
+            background: rgba(232, 185, 49, 0.15);
+            color: var(--accent-light);
+            border-color: var(--accent);
+        }
+
+        /* === عنوان الصفحة === */
+        .page-header {
+            text-align: center;
+            padding: 30px 20px 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .page-header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* === تأثيرات ظهور الشرائح === */
+        .slide.active .anim-up {
+            animation: animUp 0.7s ease forwards;
+        }
+
+        .slide.active .anim-up-delay1 { animation-delay: 0.15s; }
+        .slide.active .anim-up-delay2 { animation-delay: 0.3s; }
+        .slide.active .anim-up-delay3 { animation-delay: 0.45s; }
+        .slide.active .anim-up-delay4 { animation-delay: 0.6s; }
+
+        .anim-up {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes animUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === عداد الإحصائيات === */
+        .count-up {
+            display: inline-block;
+        }
+
+        /* === تأثير كتابة === */
+        .typewriter {
+            border-left: 2px solid var(--accent);
+            padding-left: 8px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* === خطوط SVG في الخلفية === */
+        .deco-lines {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0.04;
+        }
+
+        /* === موجة === */
+        .wave-deco {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+        }
+
+        /* === ريسبونسف === */
+        @media (max-width: 640px) {
+            .slide { padding: 24px 20px; }
+            .slide-intro h1 { font-size: 1.8rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .tips-grid { grid-template-columns: 1fr; gap: 10px; }
+            .stats-row { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .stat-num { font-size: 1.8rem; }
+            .slide-intro .logo-big { width: 80px; height: 80px; }
+            .contact-row { flex-direction: column; align-items: center; }
+            .controls { padding: 12px 16px; gap: 10px; }
+            .top-bar { padding: 10px 16px; }
+            .top-bar-title { font-size: 0.9rem; }
+            .live-badge { display: none; }
+        }
+
+        /* === تأثير توهج للنص === */
+        .glow-text {
+            text-shadow: 0 0 30px rgba(232, 185, 49, 0.3);
+        }
+
+        /* === شريط جانبي زخرفي === */
+        .side-accent {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            border-radius: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            opacity: 0.3;
+        }
+
+        .side-accent.left { left: 20px; }
+        .side-accent.right { right: 20px; }
+
+        /* === نص متحرك في الأسفل === */
+        .ticker {
+            background: rgba(232, 185, 49, 0.08);
+            border-top: 1px solid rgba(232, 185, 49, 0.15);
+            padding: 8px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 60px;
+            animation: ticker 25s linear infinite;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.2);
+            z-index: 1;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<!-- جزيئات الخلفية -->
+<div class="bg-particles" id="bgParticles"></div>
+
+<!-- عنوان الصفحة -->
+<div class="page-header">
+    <h1><i class="fas fa-play-circle" style="color: var(--accent); margin-left: 8px;"></i> فيديو توعية صحي</h1>
+    <p>مشغل الفيديو التفاعلي - دكتورة هيام</p>
+</div>
+
+<!-- حاوية الفيديو -->
+<div class="video-container">
+
+    <!-- شريط علوي -->
+    <div class="top-bar">
+        <div class="top-bar-logo">
+            <svg class="logo-icon" viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#E8B931"/>
+                        <stop offset="100%" style="stop-color:#0D7C66"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="46" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                <path d="M50 20 L50 50 L70 35" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M32 55 C32 55 42 70 50 70 C58 70 68 55 68 55" fill="none" stroke="#14A085" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="6" fill="#E8B931" opacity="0.8"/>
+                <path d="M50 15 L50 22 M50 78 L50 85 M15 50 L22 50 M78 50 L85 50" stroke="#E8B931" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <div class="top-bar-title">دكتورة هيام</div>
+                <div class="top-bar-sub">مركز التوعية والرعاية الصحية</div>
+            </div>
+        </div>
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            توعية صحية
+        </div>
+    </div>
+
+    <!-- منطقة العرض -->
+    <div class="stage" id="stage">
+
+        <!-- الشريحة 0: المقدمة -->
+        <div class="slide slide-intro active" data-index="0">
+            <div class="slide-glow" style="background: var(--primary); top: -100px; right: -100px;"></div>
+            <div class="slide-glow" style="background: var(--accent); bottom: -100px; left: -100px; opacity: 0.3;"></div>
+            <div class="side-accent left"></div>
+            <div class="side-accent right"></div>
+
+            <svg class="logo-big anim-up" viewBox="0 0 200 200">
+                <defs>
+                    <linearGradient id="bigLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#E8B931"/>
+                        <stop offset="50%" style="stop-color:#F5D76E"/>
+                        <stop offset="100%" style="stop-color:#0D7C66"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <circle cx="100" cy="100" r="90" fill="none" stroke="url(#bigLogoGrad)" stroke-width="2.5" filter="url(#glow)"/>
+                <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(13,124,102,0.3)" stroke-width="1" stroke-dasharray="8 4"/>
+                <!-- أيقونة القلب والصحة -->
+                <path d="M100 60 C100 60 80 45 70 55 C60 65 70 80 100 105 C130 80 140 65 130 55 C120 45 100 60 100 60Z" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
+                <path d="M75 120 L85 120 L85 150 L115 150 L115 120 L125 120 L100 100 Z" fill="none" stroke="#14A085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+                <circle cx="100" cy="100" r="10" fill="rgba(232,185,49,0.15)" stroke="#E8B931" stroke-width="1.5"/>
+                <!-- نقاط زخرفية -->
+                <circle cx="100" cy="10" r="3" fill="#E8B931" opacity="0.6"/>
+                <circle cx="100" cy="190" r="3" fill="#E8B931" opacity="0.6"/>
+                <circle cx="10" cy="100" r="3" fill="#14A085" opacity="0.6"/>
+                <circle cx="190" cy="100" r="3" fill="#14A085" opacity="0.6"/>
+            </svg>
+
+            <h1 class="anim-up anim-up-delay1">دكتورة هيام</h1>
+            <p class="subtitle anim-up anim-up-delay2">مركز التوعية والرعاية الصحية</p>
+            <div class="tagline anim-up anim-up-delay3">صحتك أولويتنا - معاً نبني وعياً أفضل</div>
+        </div>
+
+        <!-- الشريحة 1: أهمية التوعية -->
+        <div class="slide" data-index="1">
+            <div class="slide-glow" style="background: var(--primary); top: -50px; left: 50%; transform: translateX(-50%);"></div>
+            <div class="side-accent right"></div>
+
+            <div class="slide-icon anim-up" style="background: linear-gradient(135deg, rgba(13,124,102,0.3), rgba(20,160,133,0.1)); border: 2px solid var(--primary-light);">
+                <i class="fas fa-lightbulb" style="color: var(--accent-light);"></i>
+            </div>
+            <h2 class="anim-up anim-up-delay1">ليه التوعية الصحية مهمة؟</h2>
+            <p class="anim-up anim-up-delay2">التوعية الصحية هي الخطوة الأولى نحو حياة أفضل. الوعي بالصحة مشرففاهة، ده استثمار حقيقي في مستقبلك ومستقبل عيلتك.</p>
+            <div class="tips-grid anim-up anim-up-delay3">
+                <div class="tip-card">
+                    <span class="tip-num">1</span>
+                    <span class="tip-text">تقلل نسبة الأمراض المزمنة بنسبة تصل لـ 40%</span>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">2</span>
+                    <span class="tip-text">توفير تكاليف العلاج المتأخرة والمضاعفات</span>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">3</span>
+                    <span class="tip-text">تحسين جودة الحياة اليومية والنشاط البدني</span>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">4</span>
+                    <span class="tip-text">نشر الوعي في المجتمع المحيط بيك</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 2: نصائح يومية -->
+        <div class="slide" data-index="2">
+            <div class="slide-glow" style="background: var(--accent); bottom: -80px; right: -80px; opacity: 0.2;"></div>
+            <div class="slide-glow" style="background: var(--rose); top: -60px; left: -60px; opacity: 0.15;"></div>
+            <div class="side-accent left"></div>
+
+            <div class="slide-icon anim-up" style="background: linear-gradient(135deg, rgba(232,185,49,0.2), rgba(212,99,123,0.1)); border: 2px solid var(--accent);">
+                <i class="fas fa-heart-pulse" style="color: var(--rose-light);"></i>
+            </div>
+            <h2 class="anim-up anim-up-delay1">نصائح يومية لصحتك</h2>
+            <p class="anim-up anim-up-delay2">عادات بسيطة تخلّي فرق كبير في صحتك على المدى الطويل</p>
+            <div class="tips-grid anim-up anim-up-delay3">
+                <div class="tip-card" style="border-color: rgba(232,185,49,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--accent), #D4A017);"><i class="fas fa-droplet" style="font-size:0.7rem;"></i></span>
+                    <span class="tip-text">اشرب من 6 لـ 8 أكواب ماء يومياً على الأقل</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(232,185,49,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--accent), #D4A017);"><i class="fas fa-moon" style="font-size:0.7rem;"></i></span>
+                    <span class="tip-text">نام من 7 لـ 8 ساعات بتوقيت ثابت يومياً</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(232,185,49,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--accent), #D4A017);"><i class="fas fa-person-walking" style="font-size:0.7rem;"></i></span>
+                    <span class="tip-text">مارس رياضة خفيفة 30 دقيقة يومياً</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(232,185,49,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--accent), #D4A017);"><i class="fas fa-apple-whole" style="font-size:0.7rem;"></i></span>
+                    <span class="tip-text">قلل السكريات والوجبات السريعة قدر الإمكان</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 3: الفحص الدوري -->
+        <div class="slide" data-index="3">
+            <div class="slide-glow" style="background: var(--primary-light); top: 20%; left: -80px;"></div>
+            <div class="side-accent right"></div>
+
+            <div class="slide-icon anim-up" style="background: linear-gradient(135deg, rgba(20,160,133,0.3), rgba(13,124,102,0.1)); border: 2px solid var(--primary-light);">
+                <i class="fas fa-stethoscope" style="color: var(--primary-light);"></i>
+            </div>
+            <h2 class="anim-up anim-up-delay1">الفحص الدوري انقاذ حياة</h2>
+            <p class="anim-up anim-up-delay2">الكشف المبكر عن الأمراض يزيد نسبة الشفاء بشكل كبير. متنساش تعمل فحصك الدوري</p>
+
+            <div class="stats-row anim-up anim-up-delay3">
+                <div class="stat-item">
+                    <div class="stat-num"><span class="count-up" data-target="95">0</span>%</div>
+                    <div class="stat-label">نسبة الشفاء مع الكشف المبكر</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num"><span class="count-up" data-target="6">0</span></div>
+                    <div class="stat-label">أشهر بين كل فحص دوري</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num"><span class="count-up" data-target="70">0</span>%</div>
+                    <div class="stat-label">تقليل مضاعفات الأمراض</div>
+                </div>
+            </div>
+
+            <div class="anim-up anim-up-delay4" style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                <span style="background: rgba(13,124,102,0.15); border: 1px solid rgba(13,124,102,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; color: var(--text);"><i class="fas fa-check" style="color: var(--primary-light); margin-left: 6px;"></i>تحليل دم شامل</span>
+                <span style="background: rgba(13,124,102,0.15); border: 1px solid rgba(13,124,102,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; color: var(--text);"><i class="fas fa-check" style="color: var(--primary-light); margin-left: 6px;"></i>قياس الضغط</span>
+                <span style="background: rgba(13,124,102,0.15); border: 1px solid rgba(13,124,102,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; color: var(--text);"><i class="fas fa-check" style="color: var(--primary-light); margin-left: 6px;"></i>سكر الدم</span>
+                <span style="background: rgba(13,124,102,0.15); border: 1px solid rgba(13,124,102,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; color: var(--text);"><i class="fas fa-check" style="color: var(--primary-light); margin-left: 6px;"></i>كشف عام</span>
+            </div>
+        </div>
+
+        <!-- الشريحة 4: الصحة النفسية -->
+        <div class="slide" data-index="4">
+            <div class="slide-glow" style="background: var(--rose); top: -60px; right: -60px; opacity: 0.2;"></div>
+            <div class="slide-glow" style="background: var(--accent); bottom: -80px; left: 30%; opacity: 0.15;"></div>
+            <div class="side-accent left"></div>
+
+            <div class="slide-icon anim-up" style="background: linear-gradient(135deg, rgba(212,99,123,0.25), rgba(232,143,160,0.1)); border: 2px solid var(--rose);">
+                <i class="fas fa-brain" style="color: var(--rose-light);"></i>
+            </div>
+            <h2 class="anim-up anim-up-delay1">الصحة النفسية جزء من الصحة</h2>
+            <p class="anim-up anim-up-delay2">الصحة النفسية مهمة زي الصحة الجسدية بالظبط. ماتخجلش تطلب مساعدة لو محتاج</p>
+            <div class="tips-grid anim-up anim-up-delay3">
+                <div class="tip-card" style="border-color: rgba(212,99,123,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--rose), var(--rose-light));"><i class="fas fa-comments" style="font-size:0.65rem;"></i></span>
+                    <span class="tip-text">تحدث عن مشاعرك مع شخص تثق فيه</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(212,99,123,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--rose), var(--rose-light));"><i class="fas fa-spa" style="font-size:0.65rem;"></i></span>
+                    <span class="tip-text">مارس التأمل والتنفس العميق يومياً</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(212,99,123,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--rose), var(--rose-light));"><i class="fas fa-ban" style="font-size:0.65rem;"></i></span>
+                    <span class="tip-text">ابتعد عن السلبية وقيّد استخدام السوشيال ميديا</span>
+                </div>
+                <div class="tip-card" style="border-color: rgba(212,99,123,0.25);">
+                    <span class="tip-num" style="background: linear-gradient(135deg, var(--rose), var(--rose-light));"><i class="fas fa-hand-holding-heart" style="font-size:0.65rem;"></i></span>
+                    <span class="tip-text">لو محتاج مساعدة مترددش تروح ل أخصائي</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 5: الخاتمة -->
+        <div class="slide slide-outro" data-index="5">
+            <div class="slide-glow" style="background: var(--accent); top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 400px; opacity: 0.12;"></div>
+            <div class="slide-glow" style="background: var(--primary); top: -100px; right: -100px;"></div>
+            <div class="side-accent left"></div>
+            <div class="side-accent right"></div>
+
+            <svg class="anim-up" style="width: 70px; height: 70px; margin-bottom: 16px;" viewBox="0 0 100 100">
+                <path d="M50 18 C50 18 30 38 30 55 C30 66 39 75 50 75 C61 75 70 66 70 55 C70 38 50 18 50 18Z" fill="rgba(232,185,49,0.15)" stroke="#E8B931" stroke-width="2"/>
+                <path d="M42 52 L48 58 L60 44" fill="none" stroke="#14A085" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            <h2 class="anim-up anim-up-delay1 glow-text" style="color: var(--accent-light);">صحتك في أيدٍ أمينة</h2>
+            <p class="anim-up anim-up-delay2">مركز دكتورة هيام موجود عشانك. تواصل معانا واحجز موعدك دلوقتي</p>
+
+            <div class="cta-box anim-up anim-up-delay3">
+                <h3>احجز موعدك الآن</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">الفريق متواجد لخدمتك كل يوم</p>
+                <div class="contact-row">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>01XXXXXXXXX</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>العنوان - القاهرة</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>واتساب</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="anim-up anim-up-delay4" style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                <svg style="width: 30px; height: 30px;" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="44" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                    <path d="M50 28 L50 50 L65 40" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="4" fill="#E8B931"/>
+                </svg>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">دكتورة هيام - مركز التوعية والرعاية الصحية</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط التقدم -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 16.66%;"></div>
+    </div>
+
+    <!-- شريط الأخبار -->
+    <div class="ticker">
+        <div class="ticker-content" id="ticker">
+            <span><i class="fas fa-star" style="margin-left: 6px;"></i> صحتك أولويتنا</span>
+            <span><i class="fas fa-heart" style="margin-left: 6px;"></i> احجز فحصك الدوري الآن</span>
+            <span><i class="fas fa-shield-heart" style="margin-left: 6px;"></i> الكشف المبكر يحميك</span>
+            <span><i class="fas fa-hand-holding-medical" style="margin-left: 6px;"></i> دكتورة هيام معاكي في كل خطوة</span>
+            <span><i class="fas fa-leaf" style="margin-left: 6px;"></i> عيش حياة صحية وسعيدة</span>
+            <span><i class="fas fa-phone" style="margin-left: 6px;"></i> تواصل معانا الآن</span>
+            <!-- تكرار للمتابعة -->
+            <span><i class="fas fa-star" style="margin-left: 6px;"></i> صحتك أولويتنا</span>
+            <span><i class="fas fa-heart" style="margin-left: 6px;"></i> احجز فحصك الدوري الآن</span>
+            <span><i class="fas fa-shield-heart" style="margin-left: 6px;"></i> الكشف المبكر يحميك</span>
+            <span><i class="fas fa-hand-holding-medical" style="margin-left: 6px;"></i> دكتورة هيام معاكي في كل خطوة</span>
+            <span><i class="fas fa-leaf" style="margin-left: 6px;"></i> عيش حياة صحية وسعيدة</span>
+            <span><i class="fas fa-phone" style="margin-left: 6px;"></i> تواصل معانا الآن</span>
+        </div>
+    </div>
+
+    <!-- التحكم -->
+    <div class="controls">
+        <button class="ctrl-btn nav-btn" id="prevBtn" title="السابق">
+            <i class="fas fa-forward"></i>
+        </button>
+        <button class="ctrl-btn play-btn" id="playBtn" title="تشغيل/إيقاف">
+            <i class="fas fa-play" id="playIcon"></i>
+        </button>
+        <button class="ctrl-btn nav-btn" id="nextBtn" title="التالي">
+            <i class="fas fa-backward"></i>
+        </button>
+        <div class="slide-dots" id="slideDots"></div>
+        <span class="time-display" id="timeDisplay">01 / 06</span>
+        <button class="ctrl-btn autoplay-btn on" id="autoplayBtn" title="تشغيل تلقائي">
+            <i class="fas fa-rotate"></i>
+            تلقائي
+        </button>
+    </div>
+</div>
+
+<div class="footer-note">
+    فيديو توعية تفاعلي - مركز دكتورة هيام للتوعية والرعاية الصحية
+</div>
+
+<script>
+    // === إعداد الجزيئات الخلفية ===
+    (function createParticles() {
+        const container = document.getElementById('bgParticles');
+        const colors = ['#0D7C66', '#14A085', '#E8B931', '#D4637B'];
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 6 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 10) + 's';
+            container.appendChild(p);
+        }
+    })();
+
+    // === إدارة الشرائح ===
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+    let isPlaying = false;
+    let isAutoplay = true;
+    let autoplayInterval = null;
+    let slideTimer = null;
+
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressFill = document.getElementById('progressFill');
+    const slideDotsContainer = document.getElementById('slideDots');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const autoplayBtn = document.getElementById('autoplayBtn');
+
+    // إنشاء النقاط
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goToSlide(i));
+        slideDotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function goToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+
+        // إزالة الحالة النشطة من الشريحة الحالية
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+
+        // إعادة تعيين العناصر المتحركة
+        const animElements = slides[currentSlide].querySelectorAll('.anim-up');
+        animElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+        });
+
+        currentSlide = index;
+
+        // تفعيل الشريحة الجديدة
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+
+        // تحديث شريط التقدم
+        progressFill.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+        // تحديث العرض الزمني
+        timeDisplay.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+
+        // تشغيل عداد الإحصائيات إذا كانت شريحة الإحصائيات
+        if (currentSlide === 3) {
+            startCountUp();
+        }
+    }
+
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+    }
+
+    // === التشغيل / الإيقاف ===
+    function togglePlay() {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+            playIcon.className = 'fas fa-pause';
+            startAutoplay();
+        } else {
+            playIcon.className = 'fas fa-play';
+            stopAutoplay();
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        if (!isAutoplay && !isPlaying) return;
+        autoplayInterval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+    }
+
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+
+    // === التشغيل التلقائي ===
+    function toggleAutoplay() {
+        isAutoplay = !isAutoplay;
+        autoplayBtn.classList.toggle('on', isAutoplay);
+        if (isAutoplay && isPlaying) {
+            startAutoplay();
+        } else {
+            stopAutoplay();
+        }
+    }
+
+    // === عداد الإحصائيات ===
+    function startCountUp() {
+        const counters = document.querySelectorAll('.count-up');
+        counters.forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            let current = 0;
+            const increment = target / 40;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current);
+            }, 40);
+        });
+    }
+
+    // === أحداث الأزرار ===
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        if (isPlaying) { stopAutoplay(); startAutoplay(); }
+    });
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        if (isPlaying) { stopAutoplay(); startAutoplay(); }
+    });
+    autoplayBtn.addEventListener('click', toggleAutoplay);
+
+    // === لوحة المفاتيح ===
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') nextSlide();
+        if (e.key === 'ArrowRight') prevSlide();
+        if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+    });
+
+    // === بدء التشغيل التلقائي عند التحميل ===
+    setTimeout(() => {
+        isPlaying = true;
+        playIcon.className = 'fas fa-pause';
+        startAutoplay();
+    }, 1500);
+
+    // === تقليل الحركة إذا المستخدم يفضل ذلك ===
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.particle').forEach(p => {
+            p.style.animationPlayState = 'paused';
+        });
+    }
+</script>
+</body>
+</html>
